@@ -10,4 +10,10 @@
 
 @interface Page : NSObject
 
+@property (nonatomic, strong) NSString *imageName;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *message;
+
+- (instancetype)initWithTitle:(NSString*)title message:(NSString*)message imageName:(NSString*)imageName;
+
 @end

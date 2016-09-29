@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class Page;
 @interface PageCell : UICollectionViewCell
 
+@property (nonatomic, strong) Page *page;
 @end

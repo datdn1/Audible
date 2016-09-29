@@ -10,4 +10,12 @@
 
 @implementation Page
 
+- (instancetype)initWithTitle:(NSString*)title message:(NSString*)message imageName:(NSString*)imageName {
+    if (self = [super init]) {
+        _title = title;
+        _message = message;
+        _imageName = imageName;
+    }
+    return self;
+}
 @end
