@@ -26,6 +26,8 @@
 		B0301B9D1D9D513200B95474 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B0301B931D9D513200B95474 /* ViewController+MASAdditions.m */; };
 		B0301BA31D9D566400B95474 /* PageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0301BA21D9D566400B95474 /* PageCell.m */; };
 		B0301BA71D9D5FA200B95474 /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = B0301BA61D9D5FA200B95474 /* Page.m */; };
+		B053E5D01D9EAF81006A4FC7 /* LoginCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B053E5CF1D9EAF81006A4FC7 /* LoginCell.m */; };
+		B053E5D41D9EBC11006A4FC7 /* LeftPaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B053E5D31D9EBC11006A4FC7 /* LeftPaddingTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,10 @@
 		B0301BA21D9D566400B95474 /* PageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCell.m; sourceTree = "<group>"; };
 		B0301BA51D9D5FA200B95474 /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
 		B0301BA61D9D5FA200B95474 /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
+		B053E5CE1D9EAF81006A4FC7 /* LoginCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCell.h; sourceTree = "<group>"; };
+		B053E5CF1D9EAF81006A4FC7 /* LoginCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCell.m; sourceTree = "<group>"; };
+		B053E5D21D9EBC11006A4FC7 /* LeftPaddingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftPaddingTextField.h; sourceTree = "<group>"; };
+		B053E5D31D9EBC11006A4FC7 /* LeftPaddingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftPaddingTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +209,7 @@
 		B0301B9E1D9D562000B95474 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B053E5D11D9EBBEB006A4FC7 /* CustomViews */,
 				B0301BA01D9D564400B95474 /* PageCell */,
 			);
 			name = Views;
@@ -224,6 +231,8 @@
 			children = (
 				B0301BA11D9D566400B95474 /* PageCell.h */,
 				B0301BA21D9D566400B95474 /* PageCell.m */,
+				B053E5CE1D9EAF81006A4FC7 /* LoginCell.h */,
+				B053E5CF1D9EAF81006A4FC7 /* LoginCell.m */,
 			);
 			name = PageCell;
 			sourceTree = "<group>";
@@ -235,6 +244,15 @@
 				B0301BA61D9D5FA200B95474 /* Page.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		B053E5D11D9EBBEB006A4FC7 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				B053E5D21D9EBC11006A4FC7 /* LeftPaddingTextField.h */,
+				B053E5D31D9EBC11006A4FC7 /* LeftPaddingTextField.m */,
+			);
+			name = CustomViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,6 +363,7 @@
 				B0301B9A1D9D513200B95474 /* NSArray+MASAdditions.m in Sources */,
 				B0301B5C1D9D50CF00B95474 /* LoginController.m in Sources */,
 				B0301B591D9D50CF00B95474 /* AppDelegate.m in Sources */,
+				B053E5D41D9EBC11006A4FC7 /* LeftPaddingTextField.m in Sources */,
 				B0301B971D9D513200B95474 /* MASLayoutConstraint.m in Sources */,
 				B0301B561D9D50CF00B95474 /* main.m in Sources */,
 				B0301B9D1D9D513200B95474 /* ViewController+MASAdditions.m in Sources */,
@@ -353,6 +372,7 @@
 				B0301B981D9D513200B95474 /* MASViewAttribute.m in Sources */,
 				B0301B951D9D513200B95474 /* MASConstraint.m in Sources */,
 				B0301B961D9D513200B95474 /* MASConstraintMaker.m in Sources */,
+				B053E5D01D9EAF81006A4FC7 /* LoginCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +565,7 @@
 				B0301B751D9D50D000B95474 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B0301B761D9D50D000B95474 /* Build configuration list for PBXNativeTarget "AudibleTests" */ = {
 			isa = XCConfigurationList;
@@ -553,6 +574,7 @@
 				B0301B781D9D50D000B95474 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

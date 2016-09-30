@@ -10,6 +10,7 @@
 #import "Masonry.h"
 #import "PageCell.h"
 #import "Page.h"
+#import "LoginCell.h"
 
 #define kPageCellIdentifier         @"PageCellId"
 #define kLoginPageCellIdentifier    @"LoginPageCellId"
@@ -41,7 +42,7 @@
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
         [_collectionView registerClass:[PageCell class] forCellWithReuseIdentifier:kPageCellIdentifier];
-        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:kLoginPageCellIdentifier];
+        [_collectionView registerClass:[LoginCell class] forCellWithReuseIdentifier:kLoginPageCellIdentifier];
         _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
     }
     return _collectionView;
@@ -64,6 +65,7 @@
         _skipButton.translatesAutoresizingMaskIntoConstraints = NO;
         [_skipButton setTitle:@"Skip" forState:UIControlStateNormal];
         [_skipButton setTitleColor:[UIColor colorWithRed:247/255.0 green:154/255.0 blue:27/255.0 alpha:1.0] forState:UIControlStateNormal];
+        [_skipButton addTarget:self action:@selector(skip) forControlEvents:UIControlEventTouchUpInside];
     }
     return _skipButton;
 }
@@ -74,6 +76,7 @@
         _nextButton.translatesAutoresizingMaskIntoConstraints = NO;
         [_nextButton setTitle:@"Next" forState:UIControlStateNormal];
         [_nextButton setTitleColor:[UIColor colorWithRed:247/255.0 green:154/255.0 blue:27/255.0 alpha:1.0] forState:UIControlStateNormal];
+        [_nextButton addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
     }
     return _nextButton;
 }
@@ -86,6 +89,24 @@
     
     // setup views
     [self setupViews];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardDidShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 
 - (void)setupViews {
@@ -131,7 +152,7 @@
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.item == [self.pages count]) {
-        UICollectionViewCell *loginCell = [collectionView dequeueReusableCellWithReuseIdentifier:kLoginPageCellIdentifier forIndexPath:indexPath];
+        LoginCell *loginCell = [collectionView dequeueReusableCellWithReuseIdentifier:kLoginPageCellIdentifier forIndexPath:indexPath];
         return loginCell;
     }
     
@@ -144,6 +165,10 @@
     return CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height);
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.view endEditing:YES];
+}
+
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
     NSLog(@"Offset = %f", targetContentOffset->x);
     CGFloat offset = targetContentOffset->x;
@@ -152,8 +177,7 @@
     self.pageControl.currentPage = currentPage;
     
     if (currentPage == [self.pages count]) {
-        self.bottomPageControlConstraint.offset(16);
-        self.topSkipButtonConstraint.offset(-16 - 20);
+        [self moveControlContraintsOffScreen];
     }
     else {
         self.bottomPageControlConstraint.offset(-16);
@@ -169,4 +193,48 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)keyboardShow:(NSNotification*)notification {
+    CGRect keyboardSize = [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    NSLog(@"Frame = %@", NSStringFromCGRect(keyboardSize));
+    
+//    CGFloat duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+//    NSUInteger curve = [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue];
+
+    [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.view.frame = CGRectMake(0, -50, self.view.frame.size.width, self.view.frame.size.height);
+    } completion:nil];
+}
+
+- (void)keyboardHide:(NSNotification*)notification {
+    [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    } completion:nil];
+}
+
+- (void)next {
+    if (self.pageControl.currentPage == [self.pages count]) {
+        return;
+    }
+    
+    if (self.pageControl.currentPage == [self.pages count] - 1) {
+        [self moveControlContraintsOffScreen];
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [self.view layoutIfNeeded];
+        } completion:nil];
+    }
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.pageControl.currentPage + 1 inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    self.pageControl.currentPage += 1;
+}
+
+- (void)skip {
+    self.pageControl.currentPage = [self.pages count] - 1;
+    [self next];
+}
+
+- (void)moveControlContraintsOffScreen {
+    self.bottomPageControlConstraint.offset(16);
+    self.topSkipButtonConstraint.offset(-16 - 20);
+}
 @end
