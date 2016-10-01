@@ -85,7 +85,12 @@
 
 - (void)setPage:(Page *)page {
     _page = page;
-    self.imageView.image = [UIImage imageNamed:page.imageName];
+    
+    NSString *imageName = page.imageName;
+    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        imageName = [imageName stringByAppendingString:@"_landscape"];
+    }
+    self.imageView.image = [UIImage imageNamed:imageName];
     
     UIColor *titleColor = [UIColor colorWithWhite:0.2 alpha:1.0];
     NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:page.title attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:20 weight:UIFontWeightMedium], NSForegroundColorAttributeName : titleColor}];

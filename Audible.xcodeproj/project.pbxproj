@@ -26,6 +26,8 @@
 		B0301B9D1D9D513200B95474 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B0301B931D9D513200B95474 /* ViewController+MASAdditions.m */; };
 		B0301BA31D9D566400B95474 /* PageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0301BA21D9D566400B95474 /* PageCell.m */; };
 		B0301BA71D9D5FA200B95474 /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = B0301BA61D9D5FA200B95474 /* Page.m */; };
+		B033CAA71D9FCE0D00C89856 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = B033CAA61D9FCE0D00C89856 /* MainController.m */; };
+		B033CAAA1D9FD2D200C89856 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B033CAA91D9FD2D200C89856 /* HomeController.m */; };
 		B053E5D01D9EAF81006A4FC7 /* LoginCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B053E5CF1D9EAF81006A4FC7 /* LoginCell.m */; };
 		B053E5D41D9EBC11006A4FC7 /* LeftPaddingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B053E5D31D9EBC11006A4FC7 /* LeftPaddingTextField.m */; };
 /* End PBXBuildFile section */
@@ -83,6 +85,10 @@
 		B0301BA21D9D566400B95474 /* PageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCell.m; sourceTree = "<group>"; };
 		B0301BA51D9D5FA200B95474 /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
 		B0301BA61D9D5FA200B95474 /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
+		B033CAA51D9FCE0D00C89856 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
+		B033CAA61D9FCE0D00C89856 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
+		B033CAA81D9FD2D200C89856 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
+		B033CAA91D9FD2D200C89856 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; };
 		B053E5CE1D9EAF81006A4FC7 /* LoginCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCell.h; sourceTree = "<group>"; };
 		B053E5CF1D9EAF81006A4FC7 /* LoginCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCell.m; sourceTree = "<group>"; };
 		B053E5D21D9EBC11006A4FC7 /* LeftPaddingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftPaddingTextField.h; sourceTree = "<group>"; };
@@ -222,6 +228,10 @@
 				B0301B581D9D50CF00B95474 /* AppDelegate.m */,
 				B0301B5A1D9D50CF00B95474 /* LoginController.h */,
 				B0301B5B1D9D50CF00B95474 /* LoginController.m */,
+				B033CAA51D9FCE0D00C89856 /* MainController.h */,
+				B033CAA61D9FCE0D00C89856 /* MainController.m */,
+				B033CAA81D9FD2D200C89856 /* HomeController.h */,
+				B033CAA91D9FD2D200C89856 /* HomeController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -357,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0301BA71D9D5FA200B95474 /* Page.m in Sources */,
+				B033CAAA1D9FD2D200C89856 /* HomeController.m in Sources */,
 				B0301B9B1D9D513200B95474 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				B0301B991D9D513200B95474 /* MASViewConstraint.m in Sources */,
 				B0301B941D9D513200B95474 /* MASCompositeConstraint.m in Sources */,
@@ -366,6 +377,7 @@
 				B053E5D41D9EBC11006A4FC7 /* LeftPaddingTextField.m in Sources */,
 				B0301B971D9D513200B95474 /* MASLayoutConstraint.m in Sources */,
 				B0301B561D9D50CF00B95474 /* main.m in Sources */,
+				B033CAA71D9FCE0D00C89856 /* MainController.m in Sources */,
 				B0301B9D1D9D513200B95474 /* ViewController+MASAdditions.m in Sources */,
 				B0301B9C1D9D513200B95474 /* View+MASAdditions.m in Sources */,
 				B0301BA31D9D566400B95474 /* PageCell.m in Sources */,

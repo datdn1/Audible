@@ -197,11 +197,10 @@
     CGRect keyboardSize = [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     NSLog(@"Frame = %@", NSStringFromCGRect(keyboardSize));
     
-//    CGFloat duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
-//    NSUInteger curve = [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue];
+    CGFloat keyboardTranslateDistance = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? -100 : -50;
 
     [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.view.frame = CGRectMake(0, -50, self.view.frame.size.width, self.view.frame.size.height);
+        self.view.frame = CGRectMake(0, keyboardTranslateDistance, self.view.frame.size.width, self.view.frame.size.height);
     } completion:nil];
 }
 
@@ -237,4 +236,15 @@
     self.bottomPageControlConstraint.offset(16);
     self.topSkipButtonConstraint.offset(-16 - 20);
 }
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [self.collectionView.collectionViewLayout invalidateLayout];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.pageControl.currentPage inSection:0];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+        [self.collectionView reloadData];
+    });
+}
+
 @end
